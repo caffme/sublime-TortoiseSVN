@@ -114,6 +114,14 @@ class SvnBlameCommand(TortoiseSvnCommand):
         file = self.get_path(paths)
         return os.path.isfile(file) if file else False
 
+class SvnStatusCommand(TortoiseSvnCommand):
+    def run(self, paths=None):
+        TortoiseSvnCommand.run(self, 'repostatus', paths)
+
+    def is_visible(self, paths=None):
+        file = self.get_path(paths)
+        return os.path.isdir(file) if file else False
+
 
 class SvnAddCommand(TortoiseSvnCommand):
     def run(self, paths=None):
